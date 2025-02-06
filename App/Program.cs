@@ -33,6 +33,11 @@ app.UseHttpsRedirection();
 //})
 //.WithName("GetWeatherForecast");
 
+app.MapGet("/", () =>
+{
+    return "Hello World!";
+});
+
 app.Run();
 
 internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)

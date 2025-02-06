@@ -1,6 +1,18 @@
-@App_HostAddress = http://localhost:32768
+@App_HostAddress = http://localhost:80
 
-GET {{App_HostAddress}}/weatherforecast/
+
+
+GET {{App_HostAddress}}/
+
+
+###
+
+POST {{App_HostAddress}}/todo
 Accept: application/json
+
+{
+  "Name": "name 1",
+  "IsComplete": false
+}
 
 ###

@@ -1,8 +1,9 @@
-﻿namespace Todo.Models
+﻿using Shared.DDD;
+
+namespace Todo.Models
 {
-    public class Todo
+    public class Todo : Entity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public bool IsComplete { get; set; }
     }

@@ -13,6 +13,7 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["App/App.csproj", "App/"]
+COPY ["Modules/Todo/Todo.csproj", "Modules/Todo/Todo"]
 RUN dotnet restore "./App/App.csproj"
 COPY . .
 WORKDIR "/src/App"

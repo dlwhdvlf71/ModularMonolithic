@@ -1,16 +1,22 @@
-﻿using MediatR;
+﻿using Mapster;
 using Shared.CQRS;
+using Todo.Data.Repository;
+using Todo.Dtos;
 
 namespace Todo.Features.GetTodo
 {
-    public record GetTodoCommand(string Name, string IsComplete) : ICommand<GetTodoResult>;
-    public record GetTodoResult(Guid id);
+    public record GetTodoCommand(TodoDto dto) : ICommand<GetTodoResult>;
+    public record GetTodoResult(string id);
 
-    internal class GetTodoHandler(ISender sender) : ICommandHandler<GetTodoCommand, GetTodoResult>
+    internal class GetTodoHandler(ITodoRepository repository) : ICommandHandler<GetTodoCommand, GetTodoResult>
     {
-        public Task<GetTodoResult> Handle(GetTodoCommand request, CancellationToken cancellationToken)
+        public async Task<GetTodoResult> Handle(GetTodoCommand command, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var todo = command.dto.Adapt<Models.Todo>();
+
+            await repository.CreateTodoAsync(todo, cancellationToken);
+
+            return new GetTodoResult(todo.Id.ToString());
         }
     }
 }
