@@ -1,13 +1,29 @@
-﻿namespace Shared.DDD
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Shared.DDD
 {
     public abstract class Entity : IEntity
     {
-        public long Id { get; set; }
-        public DateTimeOffset CreateDate { get; set; } = DateTimeOffset.UtcNow;
-        public string? CreateBy { get; set; }
-        public DateTimeOffset UpdateDate { get; set; } = DateTimeOffset.UtcNow;
-        public string? UpdateBy { get; set; }
-        public DateTimeOffset? DeleteDate { get; set; }
-        public string? DeleteBy { get; set; }
+        [Column("id")]
+        public Int64 Id { get; set; }
+
+        [Column("created_by")]
+        public string? CreatedBy { get; set; }
+
+        [Column("created_date")]
+        public DateTimeOffset CreatedDate { get; set; } = DateTimeOffset.UtcNow;
+
+        [Column("updated_by")]
+        public string? UpdatedBy { get; set; }
+
+        [Column("updated_date")]
+        public DateTimeOffset UpdatedDate { get; set; } = DateTimeOffset.UtcNow;
+
+        [Column("deleted_by")]
+        public string? DeletedBy { get; set; }
+
+        [Column("deleted_date")]
+        public DateTimeOffset? DeletedDate { get; set; }
+
     }
 }

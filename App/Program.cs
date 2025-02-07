@@ -1,8 +1,24 @@
+using Carter;
+using Shared.Extensions;
+using Todo;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+
+var todoAssembly = typeof(TodoModule).Assembly;
+
+builder.Services.AddCarterWithAssemblies(todoAssembly);
+builder.Services.AddMediatRWithAssemblies(todoAssembly);
+
+builder.Services.AddTodoModule(builder.Configuration);
+
+//builder.Services.AddCarter();
+
+
 
 var app = builder.Build();
 
@@ -37,6 +53,8 @@ app.MapGet("/", () =>
 {
     return "Hello World!";
 });
+
+app.MapCarter();
 
 app.Run();
 

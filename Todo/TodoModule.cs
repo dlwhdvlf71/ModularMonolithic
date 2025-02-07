@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Todo.Data.Repository;
 
 namespace Todo
 {
@@ -8,6 +10,8 @@ namespace Todo
     {
         public static IServiceCollection AddTodoModule(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddScoped<ITodoRepository, TodoRepository>();
+
             services.AddDbContext<TodoDbContext>((serviceProvider, options) =>
             {
                 options.UseNpgsql(configuration.GetConnectionString("PostgreSQL:Dev"));
@@ -15,5 +19,7 @@ namespace Todo
 
             return services;
         }
+
+      
     }
 }

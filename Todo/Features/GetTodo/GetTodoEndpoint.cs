@@ -2,7 +2,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Todo.Dtos;
 
@@ -12,19 +11,17 @@ namespace Todo.Features.GetTodo
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapPost("/todo",
-                async ([FromBody] TodoDto dto, ISender sender) =>
-            {
-                var command = new GetTodoCommand(dto);
-
-                var result = await sender.Send(command);
-
-                return Results.Ok(result);
-            })
-            .Produces(StatusCodes.Status200OK)
-            .ProducesProblem(StatusCodes.Status400BadRequest)
-            .WithSummary("Create Todo in Summary")
-            .WithDescription("Create Todo in Description");
+            app.MapGet("/todo/{id}",
+                async (Int64 id, ISender sender) =>
+                {
+                    var query = new GetTodoQuery(id);
+                    var result = await sender.Send(query);
+                    return result is not null ? Results.Ok(result) : Results.NotFound();
+                })
+                .Produces<TodoDto>(StatusCodes.Status200OK)
+                .ProducesProblem(StatusCodes.Status400BadRequest)
+                .WithSummary("Get todo by id in summary")
+                .WithDescription("Get todo by id in description");
         }
     }
 }

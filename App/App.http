@@ -2,16 +2,19 @@
 
 
 
-GET {{App_HostAddress}}/
+GET {{App_HostAddress}}
 
 
 ###
 
-POST {{App_HostAddress}}/todo
-Accept: application/json
+GET {{App_HostAddress}}/todo/6
 
+###
+
+POST {{App_HostAddress}}/todo
+Content-Type: application/json
 {
-  "Name": "name 1",
+  "Name": "name 11",
   "IsComplete": false
 }
 

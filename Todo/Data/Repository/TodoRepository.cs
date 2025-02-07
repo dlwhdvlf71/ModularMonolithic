@@ -4,10 +4,17 @@ namespace Todo.Data.Repository
 {
     public class TodoRepository(TodoDbContext dbContext) : ITodoRepository
     {
+        public async Task<Models.Todo> GetTodoAsync(Int64 id, CancellationToken cancellationToken = default)
+        {
+            var todo = await dbContext.Todos.FindAsync(id, cancellationToken);
+
+            return todo ?? throw new NullReferenceException();
+        }
+
         public async Task<Models.Todo> CreateTodoAsync(Models.Todo todo, CancellationToken cancellationToken = default)
         {
             await dbContext.Todos.AddAsync(todo, cancellationToken);
-            var tt = await dbContext.SaveChangesAsync(cancellationToken);
+            await dbContext.SaveChangesAsync(cancellationToken);
 
             return todo;
         }
@@ -18,5 +25,6 @@ namespace Todo.Data.Repository
 
             return item ?? throw new NullReferenceException();
         }
+
     }
 }

@@ -5,18 +5,16 @@ using Todo.Dtos;
 
 namespace Todo.Features.GetTodo
 {
-    public record GetTodoCommand(TodoDto dto) : ICommand<GetTodoResult>;
-    public record GetTodoResult(string id);
+    public record GetTodoQuery(Int64 id) : IQuery<GetTodoResult>;
+    public record GetTodoResult(TodoDto todoDto);
 
-    internal class GetTodoHandler(ITodoRepository repository) : ICommandHandler<GetTodoCommand, GetTodoResult>
+    internal class GetTodoHandler(ITodoRepository repository) : IQueryHandler<GetTodoQuery, GetTodoResult>
     {
-        public async Task<GetTodoResult> Handle(GetTodoCommand command, CancellationToken cancellationToken)
+        public async Task<GetTodoResult> Handle(GetTodoQuery request, CancellationToken cancellationToken)
         {
-            var todo = command.dto.Adapt<Models.Todo>();
+            var todo = await repository.GetTodoAsync(request.id, cancellationToken);
 
-            await repository.CreateTodoAsync(todo, cancellationToken);
-
-            return new GetTodoResult(todo.Id.ToString());
+            return new GetTodoResult(todo.Adapt<TodoDto>());
         }
     }
 }
