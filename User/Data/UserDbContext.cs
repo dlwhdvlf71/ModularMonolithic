@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Todo
+namespace User.Data
 {
-    public class TodoDbContext : DbContext
+    public class UserDbContext : DbContext
     {
-        public TodoDbContext(DbContextOptions<TodoDbContext> options) : base(options)
+        public UserDbContext(DbContextOptions<UserDbContext> options) : base(options)
         {
         }
 
-        public DbSet<Todo.Models.Todo> Todos => Set<Todo.Models.Todo>();
+        public DbSet<Models.User> Users => Set<Models.User>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

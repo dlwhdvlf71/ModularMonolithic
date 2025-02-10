@@ -19,3 +19,18 @@ Content-Type: application/json
 }
 
 ###
+
+
+POST {{App_HostAddress}}/user
+Content-Type: application/json
+{
+  "lastName": "last name",
+  "firstName": "first name",
+  "password": "password!@#$",
+  "role": 1,
+  "userStatus": 1
+}
+
+###
+
+GET {{App_HostAddress}}/user/5

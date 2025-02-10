@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Todo\Todo.csproj" />
+    <ProjectReference Include="..\User\User.csproj" />
   </ItemGroup>
 
 </Project>

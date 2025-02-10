@@ -1,6 +1,7 @@
 using Carter;
 using Shared.Extensions;
 using Todo;
+using User;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,11 +11,15 @@ builder.Services.AddOpenApi();
 
 
 var todoAssembly = typeof(TodoModule).Assembly;
+var userAssembly = typeof(UserModule).Assembly;
 
-builder.Services.AddCarterWithAssemblies(todoAssembly);
-builder.Services.AddMediatRWithAssemblies(todoAssembly);
+var assemblies = new[] { todoAssembly, userAssembly };
+
+builder.Services.AddCarterWithAssemblies(assemblies);
+builder.Services.AddMediatRWithAssemblies(assemblies);
 
 builder.Services.AddTodoModule(builder.Configuration);
+builder.Services.AddUserModule(builder.Configuration);
 
 //builder.Services.AddCarter();
 
