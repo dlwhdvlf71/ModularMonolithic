@@ -1,4 +1,5 @@
 using Carter;
+using Shared.Enums.Role;
 using Shared.Extensions;
 using Todo;
 using User;
@@ -57,9 +58,16 @@ app.UseHttpsRedirection();
 app.MapGet("/", () =>
 {
     return "Hello World!";
-});
+})
+    .RequireAuthorization(policy =>
+    {
+        policy.RequireRole(RoleType.Admin.ToString());
+    });
 
 app.MapCarter();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.Run();
 

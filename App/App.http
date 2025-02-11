@@ -1,9 +1,10 @@
 @App_HostAddress = http://localhost:80
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1IiwiZW1haWwiOiJ0ZXN0MDNAbGFuZ2NvZGUuaW8iLCJyb2xlIjoiQWRtaW4iLCJuYmYiOjE3MzkyNjI4MzYsImV4cCI6MTczOTI2NjQzNiwiaWF0IjoxNzM5MjYyODM2LCJpc3MiOiJsYW5nY29kZSIsImF1ZCI6InVzZXIifQ.KSfDQigU7XziIFGWfleJhiIeC6QCndNhrWeOizjC2hg
 
-
+###
 
 GET {{App_HostAddress}}
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1IiwiZW1haWwiOiJ0ZXN0MDNAbGFuZ2NvZGUuaW8iLCJyb2xlIjoiQWRtaW4iLCJuYmYiOjE3MzkyNjQwODEsImV4cCI6MTczOTI2NzY4MSwiaWF0IjoxNzM5MjY0MDgxLCJpc3MiOiJsYW5nY29kZSIsImF1ZCI6InVzZXIifQ.qVpRmSaB1hr9AtOi1JiT_F4geKtOTwYqU4EP2YJXAcQ
 
 ###
 
@@ -34,3 +35,12 @@ Content-Type: application/json
 ###
 
 GET {{App_HostAddress}}/user/5
+
+###
+
+POST {{App_HostAddress}}/login
+Content-Type: application/json
+{
+  "email": "test03@langcode.io",
+  "password": ""
+}

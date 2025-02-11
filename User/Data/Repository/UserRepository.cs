@@ -24,5 +24,13 @@ namespace User.Data.Repository
 
             return items ?? throw new NullReferenceException();
         }
+
+        public async Task<Models.User> GetUserByEmailAndPassword(string email, string password, CancellationToken cancellationToken = default)
+        {
+            //var user = await dbContext.Users.Where(x => x.Email.Equals(email) && x.Password.Equals(password)).SingleOrDefaultAsync(cancellationToken);
+            var user = await dbContext.Users.Where(x => x.Email.Equals(email)).SingleOrDefaultAsync(cancellationToken);
+
+            return user ?? throw new NullReferenceException();
+        }
     }
 }

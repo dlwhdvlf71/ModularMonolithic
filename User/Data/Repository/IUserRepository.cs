@@ -6,6 +6,8 @@
 
         Task<IEnumerable<Models.User>> GetUsersAsync(string name, CancellationToken cancellationToken = default);
 
+        Task<Models.User> GetUserByEmailAndPassword(string email, string password, CancellationToken cancellationToken = default);
+
         Task<Models.User> CreateUserAsync(Models.User user, CancellationToken cancellationToken = default);
     }
 }

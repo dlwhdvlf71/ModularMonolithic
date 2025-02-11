@@ -14,6 +14,9 @@ namespace User.Models
         [Column("first_name")]
         public string FirstName { get; set; }
 
+        [Column("email")]
+        public string Email { get; set; }
+
         [Column("password")]
         public string Password { get; set; }
 
