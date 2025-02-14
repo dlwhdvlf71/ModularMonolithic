@@ -24,6 +24,10 @@ builder.Services.AddUserModule(builder.Configuration);
 
 //builder.Services.AddCarter();
 
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetConnectionString("Redis:Dev");
+});
 
 
 var app = builder.Build();

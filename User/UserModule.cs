@@ -17,6 +17,7 @@ namespace User
             services.AddSingleton<IJwtProvider, JwtProvider>();
 
             services.AddScoped<IUserRepository, UserRepository>();
+            services.Decorate<IUserRepository, CachedUserRepository>();
 
             services.AddDbContext<UserDbContext>((serviceProvider, options) =>
             {

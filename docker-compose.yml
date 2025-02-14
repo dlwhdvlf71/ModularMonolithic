@@ -5,11 +5,46 @@ services:
 
   app:
     image: ${DOCKER_REGISTRY-}app
+    container_name: app.api
     build:
       context: .
       dockerfile: App/Dockerfile
     ports:
         - "80:8080"
         - "81:8081"
-    network_mode: "bridge"
+    # network_mode: "bridge"
+    networks:
+      - app_network
+      - bridge_network
+    depends_on:
+      - cache
+  
+  # database:
+  #   image: postgres:17.2
+  #   container_name: app.db.postgres
+  #   environment:
+  #     POSTGRES_USER: database
+  #     POSTGRES_PASSWORD: postgres
+  #     POSTGRES_DB: postgres
+  #   volumes:
+  #       - ./Database:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+  #   network_mode: "bridge"
 
+  cache:
+    image: redis:8.0-M03
+    container_name: app.cache.redis
+    ports:
+      - "6379:6379"
+    # network_mode: "bridge"  
+    networks:
+      - app_network
+      - bridge_network
+
+networks:
+  app_network:
+    driver: bridge
+  bridge_network:
+    external: true # PostgreSQl 컨테이너와 동일한 네트워크 사용
+  

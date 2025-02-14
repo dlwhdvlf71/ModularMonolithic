@@ -20,7 +20,8 @@ namespace User.Features.GetUserById
                     return result is not null ? Results.Ok(result) : Results.NotFound();
                 })
                 .Produces<UserDto>(StatusCodes.Status200OK)
-                .ProducesProblem(StatusCodes.Status400BadRequest);
+                .ProducesProblem(StatusCodes.Status400BadRequest)
+                .WithRequestTimeout(TimeSpan.FromMinutes(5));
         }
     }
 }

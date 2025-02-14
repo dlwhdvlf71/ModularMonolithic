@@ -34,7 +34,7 @@ Content-Type: application/json
 
 ###
 
-GET {{App_HostAddress}}/user/5
+GET {{App_HostAddress}}/user/2
 
 ###
 
