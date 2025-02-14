@@ -42,6 +42,17 @@ services:
       - app_network
       - bridge_network
 
+  messagebus:
+    image: rabbitmq:management
+    container_name: app.messagebus.rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - app_network
+      - bridge_network
+  
+
 networks:
   app_network:
     driver: bridge
