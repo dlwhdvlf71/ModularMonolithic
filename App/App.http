@@ -25,7 +25,7 @@ Content-Type: application/json
 POST {{App_HostAddress}}/user
 Content-Type: application/json
 {
-  "lastName": "last name",
+  "lastName": "last name 1",
   "firstName": "first name",
   "password": "password!@#$",
   "role": 1,
