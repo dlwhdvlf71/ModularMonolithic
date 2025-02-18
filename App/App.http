@@ -28,6 +28,7 @@ Content-Type: application/json
   "lastName": "last name 1",
   "firstName": "first name",
   "password": "password!@#$",
+  "email": "test@test.co.kr",
   "role": 1,
   "userStatus": 1
 }

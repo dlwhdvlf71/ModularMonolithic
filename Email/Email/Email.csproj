@@ -8,6 +8,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Shared.Messaging\Shared.Messaging\Shared.Messaging.csproj" />
+    <ProjectReference Include="..\..\User\User.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="EventHandlers\" />
   </ItemGroup>
 
 </Project>

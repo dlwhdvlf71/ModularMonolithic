@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using Shared.Messaging.Events;
+using User.Events;
 
 namespace Email.EventHandlers
 {

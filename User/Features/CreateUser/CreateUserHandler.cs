@@ -1,9 +1,9 @@
 ﻿using Mapster;
 using MediatR;
 using Shared.CQRS;
-using Shared.Messaging.Events;
 using User.Data.Repository;
 using User.Dtos;
+using User.Events;
 
 namespace User.Features.CreateUser
 {
