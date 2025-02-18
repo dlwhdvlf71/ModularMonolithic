@@ -15,10 +15,10 @@ namespace Shared.Messaging.Extensions
 
                 config.UsingRabbitMq((context, configurator) =>
                 {
-                    configurator.Host(new Uri(configuration["RabbitMq:Host"]!), host =>
+                    configurator.Host(new Uri(configuration["MessageBus:RabbitMq:Host"]!), host =>
                     {
-                        host.Username(configuration["RabbitMq:Username"]!);
-                        host.Password(configuration["RabbitMq:Password"]!);
+                        host.Username(configuration["MessageBus:RabbitMq:Username"]!);
+                        host.Password(configuration["MessageBus:RabbitMq:Password"]!);
                     });
 
                     configurator.AutoDelete = false;

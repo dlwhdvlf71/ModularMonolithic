@@ -11,8 +11,4 @@
     <ProjectReference Include="..\..\User\User.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="EventHandlers\" />
-  </ItemGroup>
-
 </Project>
