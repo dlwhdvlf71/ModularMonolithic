@@ -14,10 +14,10 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["App/App.csproj", "App/"]
 COPY ["Modules/Todo/Todo.csproj", "Modules/Todo/"]
-COPY ["Modules/Todo/Login.csproj", "Modules/Login/"]
-COPY ["Modules/Todo/Email.csproj", "Modules/Email/"]
-COPY ["Modules/Todo/User.csproj", "Modules/User/"]
-COPY ["Shared/Shared/Shared.csproj", "Shared/Shared/"]
+COPY ["Modules/Login/Login.csproj", "Modules/Login/"]
+COPY ["Modules/Email/Email.csproj", "Modules/Email/"]
+COPY ["Modules/User/User.csproj", "Modules/User/"]
+COPY ["Shared/Shared.csproj", "Shared/Shared/"]
 
 RUN dotnet restore "./App/App.csproj"
 COPY . .

@@ -13,24 +13,24 @@ services:
         - "80:8080"
         - "81:8081"
     # network_mode: "bridge"
-    networks:
-      - app_network
-      - bridge_network
+    # networks:
+    #   - app_network
+    #   - bridge_network
     depends_on:
       - cache
   
-  # database:
-  #   image: postgres:17.2
-  #   container_name: app.db.postgres
-  #   environment:
-  #     POSTGRES_USER: database
-  #     POSTGRES_PASSWORD: postgres
-  #     POSTGRES_DB: postgres
-  #   volumes:
-  #       - ./Database:/var/lib/postgresql/data
-  #   ports:
-  #     - "5432:5432"
-  #   network_mode: "bridge"
+  database:
+    image: postgres:17.2
+    container_name: app.db.postgres
+    environment:
+      POSTGRES_USER: database
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+        - ./Database:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    # network_mode: "bridge"
 
   cache:
     image: redis:8.0-M03
@@ -38,9 +38,9 @@ services:
     ports:
       - "6379:6379"
     # network_mode: "bridge"  
-    networks:
-      - app_network
-      - bridge_network
+    # networks:
+    #   - app_network
+    #   - bridge_network
 
   messagebus:
     image: rabbitmq:management
@@ -48,14 +48,14 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
-    networks:
-      - app_network
-      - bridge_network
+    # networks:
+    #   - app_network
+    #   - bridge_network
   
 
-networks:
-  app_network:
-    driver: bridge
-  bridge_network:
-    external: true # PostgreSQl 컨테이너와 동일한 네트워크 사용
+# networks:
+#   app_network:
+#     driver: bridge
+#   bridge_network:
+#     external: true # PostgreSQl 컨테이너와 동일한 네트워크 사용
   
