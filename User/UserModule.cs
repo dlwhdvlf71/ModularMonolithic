@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,6 +44,13 @@ namespace User
                 });
 
             return services;
+        }
+
+        public static IApplicationBuilder UseUserModule(this IApplicationBuilder app)
+        {
+            //app.UseMigration<UserDbContext>();
+
+            return app;
         }
     }
 }

@@ -17,15 +17,16 @@ services:
     #   - app_network
     #   - bridge_network
     depends_on:
+      - database
       - cache
   
   database:
     image: postgres:17.2
     container_name: app.db.postgres
     environment:
-      POSTGRES_USER: database
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      POSTGRES_DB: database
     volumes:
         - ./Database:/var/lib/postgresql/data
     ports:
