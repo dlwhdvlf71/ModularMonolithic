@@ -48,11 +48,11 @@ app.UseHttpsRedirection();
 app.MapGet("/", () =>
 {
     return "Hello World!";
-})
-    .RequireAuthorization(policy =>
-    {
-        policy.RequireRole(RoleType.Admin.ToString());
-    });
+});
+    //.RequireAuthorization(policy =>
+    //{
+    //    policy.RequireRole(RoleType.Admin.ToString());
+    //});
 
 app.MapCarter();
 
