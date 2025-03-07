@@ -1,6 +1,6 @@
 # 1️⃣ 기본 실행 환경 설정
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
-USER $APP_UID
+#USER $APP_UID
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
@@ -11,10 +11,15 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
 COPY ["App/App.csproj", "App/"]
-COPY ["Modules/Todo/Todo.csproj", "Modules/Todo/"]
-COPY ["Modules/Login/Login.csproj", "Modules/Login/"]
-COPY ["Modules/Email/Email.csproj", "Modules/Email/"]
-COPY ["Modules/User/User.csproj", "Modules/User/"]
+#COPY ["Modules/Todo/Todo.csproj", "Modules/Todo/"]
+#COPY ["Modules/Login/Login.csproj", "Modules/Login/"]
+#COPY ["Modules/Email/Email.csproj", "Modules/Email/Email/"]
+#COPY ["Modules/User/User.csproj", "Modules/User/"]
+#COPY ["Shared/Shared.csproj", "Shared/Shared/Shared/"]
+COPY ["Todo/Todo.csproj", "Modules/Todo/"]
+COPY ["Login/Login.csproj", "Modules/Login/"]
+COPY ["Email/Email/Email.csproj", "Modules/Email/"]
+COPY ["User/User.csproj", "Modules/User/"]
 COPY ["Shared/Shared.csproj", "Shared/Shared/"]
 
 RUN dotnet restore "./App/App.csproj"
@@ -35,8 +40,12 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 
 # ✅ `entrypoint.sh` 추가 및 실행 권한 부여
-COPY ./entrypoint.sh /App/entrypoint.sh
-RUN chmod +x /App/entrypoint.sh
+#COPY ./App/entrypoint.sh /app/entrypoint.sh
+#RUN chmod +x /app/entrypoint.sh
+
+# ✅ 권한 변경 후 사용자 전환
+USER $APP_UID
 
 # ✅ 컨테이너 실행 시 마이그레이션 적용 후 앱 실행
-ENTRYPOINT ["/bin/sh", "/app/entrypoint.sh"]
+#ENTRYPOINT ["/bin/sh", "/app/entrypoint.sh"]
+ENTRYPOINT ["dotnet", "App.dll"]

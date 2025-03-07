@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Email\Email\Email.csproj" />
+    <ProjectReference Include="..\ModularMonolithic.ServiceDefaults\ModularMonolithic.ServiceDefaults.csproj" />
     <ProjectReference Include="..\Todo\Todo.csproj" />
     <ProjectReference Include="..\User\User.csproj" />
   </ItemGroup>
