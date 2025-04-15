@@ -5,6 +5,7 @@ using Shared.Extensions;
 using Shared.Messaging.Extensions;
 using Todo;
 using User;
+using Login;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,16 +16,19 @@ builder.Services.AddOpenApi();
 var todoAssembly = typeof(TodoModule).Assembly;
 var userAssembly = typeof(UserModule).Assembly;
 var emailAssembly = typeof(EmailModule).Assembly;
+var loginassembly = typeof(LoginModule).Assembly;
 
 var assemblies = new[] { todoAssembly, userAssembly, emailAssembly };
 
-builder.Services.AddCarterWithAssemblies(assemblies);
-builder.Services.AddMediatRWithAssemblies(assemblies);
-builder.Services.AddMassTransitWithAssemblies(builder.Configuration, assemblies);
+//builder.Services.AddCarterWithAssemblies([todoAssembly, userAssembly, emailAssembly, loginassembly]);
+builder.Services.AddCarterWithAssemblies([ loginassembly]);
+//builder.Services.AddMediatRWithAssemblies(assemblies);
+builder.Services.AddCustomMediatRWithAssemblies([loginassembly]);
+//builder.Services.AddMassTransitWithAssemblies(builder.Configuration, [todoAssembly, userAssembly, emailAssembly, loginassembly]);
 
-builder.Services.AddTodoModule(builder.Configuration);
-builder.Services.AddUserModule(builder.Configuration);
-builder.Services.AddEmailModule(builder.Configuration);
+//builder.Services.AddTodoModule(builder.Configuration);
+//builder.Services.AddUserModule(builder.Configuration);
+//builder.Services.AddEmailModule(builder.Configuration);
 
 //builder.Services.AddCarter();
 
@@ -56,7 +60,7 @@ app.MapGet("/", () =>
 
 app.MapCarter();
 
-app.UseAuthentication();
-app.UseAuthorization();
+//app.UseAuthentication();
+//app.UseAuthorization();
 
 app.Run();

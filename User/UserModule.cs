@@ -25,23 +25,23 @@ namespace User
                 options.UseNpgsql(configuration.GetConnectionString("PostgreSQL:Dev"));
             });
 
-            services.AddAuthorization();
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    options.RequireHttpsMetadata = false;
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuer = true,
-                        ValidIssuer = configuration["Jwt:Issuer"],
-                        ValidateAudience = true,
-                        ValidAudience = configuration["Jwt:Audience"],
-                        ValidateLifetime = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Secret"]!)),
-                        ValidateIssuerSigningKey = true,
-                        ClockSkew = TimeSpan.Zero
-                    };
-                });
+            //services.AddAuthorization();
+            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //    .AddJwtBearer(options =>
+            //    {
+            //        options.RequireHttpsMetadata = false;
+            //        options.TokenValidationParameters = new TokenValidationParameters
+            //        {
+            //            ValidateIssuer = true,
+            //            ValidIssuer = configuration["Jwt:Issuer"],
+            //            ValidateAudience = true,
+            //            ValidAudience = configuration["Jwt:Audience"],
+            //            ValidateLifetime = true,
+            //            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Secret"]!)),
+            //            ValidateIssuerSigningKey = true,
+            //            ClockSkew = TimeSpan.Zero
+            //        };
+            //    });
 
             return services;
         }

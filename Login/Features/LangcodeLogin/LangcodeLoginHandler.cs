@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Shared.Mediator;
 
 namespace Login.Features.LangcodeLogin
 {
-    public class LangcodeLoginHandler
+    public record LangcodeLoginCommand(string UserId) : ICustomCommand<LangcodeLoginResult>;
+    public record LangcodeLoginResult(string Token, DateTime CheckTime);
+
+    internal class LangcodeLoginHandler : ICustomRequestHandler<LangcodeLoginCommand, LangcodeLoginResult>
     {
+        public Task<LangcodeLoginResult> Handle(LangcodeLoginCommand request, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(new LangcodeLoginResult(Guid.NewGuid().ToString(), DateTime.Now));
+        }
     }
 }
